@@ -18,14 +18,24 @@ Importing `a8c_styling` also imports `seaborn` and sets the plotting style to `a
     a8c_styling.sinplot(4) #this is how a default plot looks like
 
 
+This is the result:
+
+![sample_sine](https://cloud.githubusercontent.com/assets/506547/8085196/88a11e66-0f97-11e5-9471-c93068c62b3d.png)
+
+
+
 Some parameters cannot be changed by the means of `set_style`. Thus, `a8c_styling` provides several convenience functions and definitions:
 
 
     plt.figure()
     a8c_styling.sinplot(4)
     plt.ylabel('this is Y',
-               **a8c_styling.ylabelparams) #horizontal label for 
+               **a8c_styling.ylabelparams) #horizontal label for
                                         #more readability
 
     a8c_styling.fewer_axis_ticks() # we don't want that many ticks
     sns.despine()
+
+This is the final design:
+
+![improved_sine](https://cloud.githubusercontent.com/assets/506547/8085195/8895e366-0f97-11e5-82f4-0e2e84c60f61.png)
