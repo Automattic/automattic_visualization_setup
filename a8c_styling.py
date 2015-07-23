@@ -4,6 +4,7 @@ import matplotlib as mpl
 from matplotlib import pylab as plt
 from a8c_colors import *  # @UnusedWildImport
 import numpy as np
+from warnings import warn
 
 
 a8c_style ={
@@ -101,8 +102,13 @@ a8c_style ={
           'ytick.minor.size': 0.0}
 sns.set_style(a8c_style)
 
+def fewer_axis_ticks(*args, **kwargs):
+    msg = "`fewer_axis_ticks` is an alias to `cleanup` and is deprecated"
+    warn(msg)
+    return cleanup(*args, **kwargs)
 
-def fewer_axis_ticks(ax=None, x_or_y='xy',
+
+def cleanup(ax=None, x_or_y='xy',
                      n_ticks=3, decimals=1,
                      despine=True):
     ''' Draw fewer ticks on the give axis
