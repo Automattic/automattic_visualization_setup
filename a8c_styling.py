@@ -102,13 +102,20 @@ a8c_style ={
 sns.set_style(a8c_style)
 
 
-def fewer_axis_ticks(ax=None, x_or_y='xy', n_ticks=3, decimals=1):
+def fewer_axis_ticks(ax=None, x_or_y='xy',
+                     n_ticks=3, decimals=1,
+                     despine=True):
     ''' Draw fewer ticks on the give axis
 
     @param ax: matplotlib axis object. If None, use plt.gca(). Default: None
     @param x_or_y: either "x", "y" or "xy". Default: xy
     @param n_ticks: have this number of ticks. Default: 3
     @param decimals: use this number of decimals. Default: 1
+    @param despine: either a boolean or a dict.  If True (default),
+        call `seaborn.despine(ax)`;
+        if a dict, use it as the argument dictionary for `seaborn.despine`
+        (no need to provide the `ax` element);
+        if False, don't despine
     '''
 
     assert x_or_y in ('x', 'y', 'xy')
@@ -122,6 +129,13 @@ def fewer_axis_ticks(ax=None, x_or_y='xy', n_ticks=3, decimals=1):
             tks = np.linspace(mn, mx, n_ticks)
             tks = np.round(tks, decimals=decimals)
             setter(tks)
+    if bool(despine): #either `True` or a dict
+        if despine is True:
+            despine = dict(ax=ax)
+        else: # a dict or dict-like
+            despine.update(dict(ax=ax))
+        sns.despine(**despine)
+
     return ax
 
 
