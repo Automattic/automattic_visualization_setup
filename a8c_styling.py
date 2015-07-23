@@ -116,7 +116,7 @@ def cleanup(ax=None, x_or_y='xy',
     @param ax: matplotlib axis object. If None, use plt.gca(). Default: None
     @param x_or_y: either "x", "y" or "xy". Default: xy
     @param n_ticks: have this number of ticks. Default: 3
-    @param decimals: use this number of decimals. Default: 1
+    @param decimals: As in `numpy.around`. Default: 1
     @param despine: either a boolean or a dict.  If True (default),
         call `seaborn.despine(ax)`;
         if a dict, use it as the argument dictionary for `seaborn.despine`
