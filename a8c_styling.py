@@ -7,6 +7,8 @@ import numpy as np
 from warnings import warn
 
 
+from seaborn import despine #for shorter typing
+
 a8c_style ={
           'axes.color_cycle': a8c_colors.default,
           'axes.edgecolor': a8c_colors.a8c_gray,
@@ -110,18 +112,18 @@ def fewer_axis_ticks(*args, **kwargs):
 
 def cleanup(ax=None, x_or_y='xy',
                      n_ticks=3, decimals=1,
-                     despine=True):
+                     despine_=True):
     ''' Draw fewer ticks on the give axis
 
     @param ax: matplotlib axis object. If None, use plt.gca(). Default: None
     @param x_or_y: either "x", "y" or "xy". Default: xy
     @param n_ticks: have this number of ticks. Default: 3
     @param decimals: As in `numpy.around`. Default: 1
-    @param despine: either a boolean or a dict.  If True (default),
-        call `seaborn.despine(ax)`;
-        if a dict, use it as the argument dictionary for `seaborn.despine`
+    @param despine_: either a boolean or a dict.  If True (default),
+        call `seaborn.despine_(ax)`;
+        if a dict, use it as the argument dictionary for `seaborn.despine_`
         (no need to provide the `ax` element);
-        if False, don't despine
+        if False, don't despine_
     '''
 
     assert x_or_y in ('x', 'y', 'xy')
@@ -135,12 +137,12 @@ def cleanup(ax=None, x_or_y='xy',
             tks = np.linspace(mn, mx, n_ticks)
             tks = np.round(tks, decimals=decimals)
             setter(tks)
-    if bool(despine): #either `True` or a dict
-        if despine is True:
-            despine = dict(ax=ax)
+    if bool(despine_): #either `True` or a dict
+        if despine_ is True:
+            despine_ = dict(ax=ax)
         else: # a dict or dict-like
-            despine.update(dict(ax=ax))
-        sns.despine(**despine)
+            despine_.update(dict(ax=ax))
+        despine(**despine_)
 
     return ax
 
@@ -260,7 +262,7 @@ def sinplot(n_series=3, flip=1):
 def demo_sinplot(n_series=3, flip=1):
     sinplot(n_series, flip)
     plt.ylabel('this is Y', **ylabelparams)
-    fewer_axis_ticks()
+    cleanup()
     sns.despine()
     return plt.gcf()
 

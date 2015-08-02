@@ -27,6 +27,15 @@ a8c_green            = '#4ab866'
 a8c_yellow            = '#f0b849'
 a8c_red              = '#d94f4f'
 
+# color aliases
+a8c_black = a8c_gray_dark
+r = a8c_red
+g = a8c_green
+b = a8c_blue
+y = a8c_yellow
+k = a8c_black
+w = a8c_gray_light
+
 
 default = [a8c_blue,
            a8c_green,
