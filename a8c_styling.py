@@ -149,8 +149,10 @@ def cleanup(ax=None, x_or_y='xy',
 
 
 ylabelparams = {'x': 0,
-                    'rotation': 0,
-                    'ha': 'right'}
+                'y': 1,
+                'rotation': 0,
+                'ha': 'right',
+                'va': 'bottom'}
 
 def a8c_axes_style(style=None, rc=None):
     """Return a parameter dict for the aesthetic style of the plots.
@@ -257,11 +259,10 @@ def sinplot(n_series=3, flip=1):
     plt.title("Sample sine plot")
     plt.legend()
     plt.xlabel('this is X')
-    plt.ylabel('this is Y')
+    plt.ylabel('this is Y', **ylabelparams)
 
 def demo_sinplot(n_series=3, flip=1):
     sinplot(n_series, flip)
-    plt.ylabel('this is Y', **ylabelparams)
     cleanup()
     sns.despine()
     return plt.gcf()
