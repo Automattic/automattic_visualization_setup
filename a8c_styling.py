@@ -10,7 +10,7 @@ from warnings import warn
 from seaborn import despine #for shorter typing
 
 a8c_style ={
-          'axes.color_cycle': a8c_colors.default,
+          'axes.color_cycle':a8c_colors.default,
           'axes.edgecolor': a8c_colors.a8c_gray,
           'axes.linewidth': .5,
           'axes.facecolor': a8c_colors.a8c_gray_light,
@@ -31,11 +31,11 @@ a8c_style ={
           'figure.dpi': 120.0,
           'figure.edgecolor': 'white',
           'figure.facecolor': a8c_colors.a8c_gray_light,
-          'figure.figsize': [4, 3],
+          'figure.figsize': [5.33, 3],
           'figure.frameon': True,
           'figure.subplot.bottom': 0.1,
           'figure.subplot.hspace': 0.5,
-          'figure.subplot.left': 0.125,
+          'figure.subplot.left': 0.25,
           'figure.subplot.right': 0.9,
           'figure.subplot.top': 0.9,
           'figure.subplot.wspace': 0.2,
@@ -83,9 +83,9 @@ a8c_style ={
           'lines.antialiased': True,
           'lines.color': a8c_colors.a8c_blue,
           'lines.linestyle': '-',
-          'lines.linewidth': 1.5,
+          'lines.linewidth': 1.15,
           'lines.marker': 'None',
-          'lines.markeredgewidth': 0.0,
+          'lines.markeredgewidth': 0.,
           'lines.markersize': 7.0,
           'savefig.dpi': 120.0,
           'savefig.edgecolor': a8c_colors.a8c_gray_light,
@@ -260,25 +260,19 @@ def sinplot(n_series=3, flip=1):
     plt.legend()
     plt.xlabel('this is X')
     plt.ylabel('this is Y', **ylabelparams)
-
-def demo_sinplot(n_series=3, flip=1):
-    sinplot(n_series, flip)
     cleanup()
-    sns.despine()
     return plt.gcf()
 
 
 if __name__ == '__main__':
-    sns.set_style(a8c_style)
+    plt.interactive(True)
     plt.figure()
-    sinplot(3)
-    plt.title('a8c default')
-    styles = ["a8c_dark"]
-    for s in styles:
-        plt.figure()
-        with a8c_axes_style(s):
-            fig = sinplot(3, -1)
-        plt.title(s)
+    _ = sinplot(n_series=4)
+    raw_input("press enter to create another graph")
+    plt.figure()
+    _ = sinplot(n_series=10)
+
+
 
 
 
