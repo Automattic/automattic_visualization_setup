@@ -222,8 +222,8 @@ axes.formatter.limits : -7, 7 # use scientific notation if log10
                                # first or larger than the second
 axes.unicode_minus  : True    # use unicode for the minus symbol
                                # rather than hypen.  See http://en.wikipedia.org/wiki/Plus_sign#Plus_sign
-axes.color_cycle    : 0087be, 4ab866, f0b849, d94f4f, 005082, f0821e
 
+axes.prop_cycle:   cycler('color', ['0087be', '4ab866', 'f0b849', 'd94f4f', '005082', 'f0821e'])
 #polaraxes.grid      : True    # display grid on polar axes
 #axes3d.grid         : True    # display grid on 3d axes
 

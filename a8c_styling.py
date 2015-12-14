@@ -9,7 +9,7 @@ from warnings import warn
 
 from seaborn import despine #for shorter typing
 
-a8c_style ={
+a8c_style_gray ={
           'axes.color_cycle':a8c_colors.default,
           'axes.edgecolor': a8c_colors.a8c_gray,
           'axes.linewidth': .5,
@@ -102,7 +102,47 @@ a8c_style ={
           'ytick.labelsize': 10.0,
           'ytick.major.size': 0.0,
           'ytick.minor.size': 0.0}
-sns.set_style(a8c_style)
+sns.set_style(a8c_style_gray)
+
+a8c_style_white = {'axes.axisbelow': True,
+ 'axes.edgecolor': a8c_colors.a8c_gray_lighten10,
+ 'axes.facecolor': 'white',
+ 'axes.grid': True,
+ 'axes.labelcolor': a8c_colors.a8c_gray_dark,
+ 'axes.linewidth': 1,
+ 'figure.facecolor': 'white',
+ 'font.family': ['sans-serif'],
+  'font.monospace': ['Andale Mono',
+                      'Nimbus Mono L',
+                      'Courier New',
+                      'Courier',
+                      'Fixed',
+                      'Terminal',
+                      'monospace'],
+  'font.sans-serif': ['Open Sans',
+                      'Liberation Sans',
+                      'Arial',
+                      'Bitstream Vera Sans',
+                      'sans-serif'],
+ 'grid.color': a8c_colors.a8c_gray_lighten10,
+ 'grid.linestyle': '-',
+ 'image.cmap': 'Greys',
+ 'legend.frameon': False,
+ 'legend.numpoints': 1,
+ 'legend.scatterpoints': 1,
+ 'lines.solid_capstyle': 'round',
+ 'text.color': a8c_colors.a8c_gray_dark,
+ 'xtick.color': a8c_colors.a8c_gray_dark,
+ 'xtick.direction': 'out',
+ 'xtick.major.size': 0,
+ 'xtick.minor.size': 0,
+ 'ytick.color': a8c_colors.a8c_gray_dark,
+ 'ytick.direction': 'out',
+ 'ytick.major.size': 0,
+ 'ytick.minor.size': 0}
+
+
+a8c_style = a8c_style_white
 
 def fewer_axis_ticks(*args, **kwargs):
     msg = "`fewer_axis_ticks` is an alias to `cleanup` and is deprecated"
@@ -152,100 +192,17 @@ ylabelparams = {'x': 0,
                 'y': 1,
                 'rotation': 0,
                 'ha': 'right',
-                'va': 'bottom'}
-
-def a8c_axes_style(style=None, rc=None):
-    """Return a parameter dict for the aesthetic style of the plots.
-
-    Similar to `sns.axes_style`, but also accepts A8C specific styles:
-    "a8c_default", "a8c_white", "a8c_whitegrid", "a8c_dark", "a8c_darkgrid", "a8c_ticks"
-
-    """
-    if style is None:
-        style_dict = {k: mpl.rcParams[k] for k in sns.rcmod._style_keys}
-
-    elif isinstance(style, dict):
-        style_dict = style
-
-    else:
-        styles = ["a8c_default", "a8c_white", "a8c_whitegrid", "a8c_dark", "a8c_darkgrid", "a8c_ticks"]
-        if style not in styles:
-            raise ValueError("style must be one of %s" % ", ".join(styles))
-
-        if (not style.startswith('a8c')) and ('a8c_%s' % style in styles):
-            # regular seaborn styles
-            return sns.axes_style(style, rc)
-
-        # Common parameters
-        style_dict = a8c_style.copy()
-        if style == 'a8c_default':
-            return sns.rcmod._AxesStyle(style_dict)
-
-        # Set grid on or off
-        if "grid" in style:
-            style_dict.update({
-                "axes.grid": True,
-                })
-        else:
-            style_dict.update({
-                "axes.grid": False,
-                })
-
-        # Set the color of the background, spines, and grids
-        if style.startswith("a8c_dark"):
-            style_dict.update({
-                "axes.facecolor": a8c_colors.a8c_gray_dark,
-                "axes.edgecolor": a8c_colors.a8c_gray_light,
-                "axes.linewidth": 1,
-                "grid.color": a8c_colors.a8c_gray_light,
-                "text.color": a8c_colors.a8c_gray_light,
-                'xtick.color': a8c_colors.a8c_gray_light,
-                'ytick.color': a8c_colors.a8c_gray_light,
-                })
-
-        elif style == "a8c_whitegrid":
-            style_dict.update({
-                "axes.facecolor": "white",
-                "axes.edgecolor": a8c_colors.a8c_gray_dark,
-                "axes.linewidth": 1.,
-                "grid.color": a8c_colors.a8c_gray,
-                })
-
-        elif style in ["a8c_white", "a8c_ticks"]:
-            style_dict.update({
-                "axes.facecolor": "white",
-                "axes.edgecolor": a8c_colors.a8c_gray_dark,
-                "axes.linewidth": 1.,
-                "grid.color": 'red', # a8c_colors.a8c_gray_dark,
-                })
-
-        # Show or hide the axes ticks
-        if style == "a8c_ticks":
-            style_dict.update({
-                "xtick.major.size": 6,
-                "ytick.major.size": 6,
-                "xtick.minor.size": 3,
-                "ytick.minor.size": 3,
-                })
-        else:
-            style_dict.update({
-                "xtick.major.size": 0,
-                "ytick.major.size": 0,
-                "xtick.minor.size": 0,
-                "ytick.minor.size": 0,
-                })
-
-    # Override these settings with the provided rc dictionary
-    if rc is not None:
-        rc = {k: v for k, v in rc.items() if k in sns.rcmod._style_keys}
-        style_dict.update(rc)
-
-    # Wrap in an _AxesStyle object so this can be used in a with statement
-    style_object = sns.rcmod._AxesStyle(style_dict)
-
-    return style_object
+                'va': 'top',
+                'ma': 'left'
+                }
+axtitleparams = {'x': 0,
+                 'y': 1,
+                 'ha': 'left',
+                 'ma': 'left',
+                 'va': 'bottom'}
 
 
+sns.set_style(a8c_style_white)
 
 def sinplot(n_series=3, flip=1):
     '''Helper function to demonstrate some graphics'''
@@ -256,21 +213,21 @@ def sinplot(n_series=3, flip=1):
         else:
             x = np.linspace(0, 14, 100)
             plt.plot(x, np.sin(x + i * .5) * (7 - i) * flip, label='curve %d' % i)
-    plt.title("Sample sine plot")
+    plt.title("Sample sine plot", **axtitleparams)
     plt.legend()
     plt.xlabel('this is X')
-    plt.ylabel('this is Y', **ylabelparams)
+    plt.ylabel('this is Y\nlabel', **ylabelparams)
     cleanup()
     return plt.gcf()
 
 
 if __name__ == '__main__':
-    plt.interactive(True)
+    plt.interactive(False)
     plt.figure()
     _ = sinplot(n_series=4)
-    raw_input("press enter to create another graph")
     plt.figure()
     _ = sinplot(n_series=10)
+    plt.show()
 
 
 
