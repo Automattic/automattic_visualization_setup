@@ -20,7 +20,7 @@ Importing `a8c_styling` also imports `seaborn` and sets the plotting style to `a
 
 This is the result:
 
-![sample_sine](https://cloud.githubusercontent.com/assets/506547/8085196/88a11e66-0f97-11e5-9471-c93068c62b3d.png)
+![sample_sine](https://cloud.githubusercontent.com/assets/506547/11977212/5f1e0720-a989-11e5-960c-596e1e9f096d.png)
 
 
 
@@ -32,13 +32,12 @@ Some parameters cannot be changed by the means of `set_style`. Thus, `a8c_stylin
     plt.ylabel('this is Y',
                **a8c_styling.ylabelparams) #horizontal label for
                                         #more readability
-
-    a8c_styling.fewer_axis_ticks() # we don't want that many ticks
-    sns.despine()
-
+    plt.title('This is an improved title', **a8c_styling.axtitleparams)
+    a8c_styling.cleanup()
+    
 This is the final design:
 
-![improved_sine](https://cloud.githubusercontent.com/assets/506547/8085195/8895e366-0f97-11e5-82f4-0e2e84c60f61.png)
+![improved_sine](https://cloud.githubusercontent.com/assets/506547/11977221/6e18783c-a989-11e5-80a5-e800f838aa64.png)
 
 
 ## License

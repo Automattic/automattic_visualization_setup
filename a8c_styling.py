@@ -220,10 +220,10 @@ def sinplot(n_series=3, flip=1):
         else:
             x = np.linspace(0, 14, 100)
             plt.plot(x, np.sin(x + i * .5) * (7 - i) * flip, label='curve %d' % i)
-    plt.title("Sample sine plot", **axtitleparams)
+    plt.title("Sample sine plot") # don't use  **axtitleparams to demonstrate the default behaviour
     plt.legend()
     plt.xlabel('this is X')
-    plt.ylabel('this is Y\nlabel', **ylabelparams)
+    plt.ylabel('this is Y\nlabel') # don't use **ylabelparams to demonstrate the default behaviour
     cleanup()
     return plt.gcf()
 
