@@ -54,7 +54,7 @@ a8c_style_gray ={
                               'sans-serif'],
           'font.size': 14.0,
           'grid.alpha': 1.0,
-          'grid.color': 'white',
+          'grid.color': a8c_colors.a8c_gray_lighten20,
           'grid.linestyle': '-',
           'grid.linewidth': 0.5,
           'image.aspect': 'equal',
@@ -102,7 +102,6 @@ a8c_style_gray ={
           'ytick.labelsize': 10.0,
           'ytick.major.size': 0.0,
           'ytick.minor.size': 0.0}
-sns.set_style(a8c_style_gray)
 
 a8c_style_white = {'axes.axisbelow': True,
  'axes.edgecolor': a8c_colors.a8c_gray_lighten10,
@@ -110,7 +109,18 @@ a8c_style_white = {'axes.axisbelow': True,
  'axes.grid': True,
  'axes.labelcolor': a8c_colors.a8c_gray_dark,
  'axes.linewidth': 1,
- 'figure.facecolor': 'white',
+ 'figure.autolayout': False,
+  'figure.dpi': 120.0,
+  'figure.edgecolor': 'white',
+  'figure.facecolor': 'white',
+  'figure.figsize': [5.33, 3],
+  'figure.frameon': True,
+  'figure.subplot.bottom': 0.1,
+  'figure.subplot.hspace': 0.5,
+  'figure.subplot.left': 0.25,
+  'figure.subplot.right': 0.9,
+  'figure.subplot.top': 0.9,
+  'figure.subplot.wspace': 0.2,
  'font.family': ['sans-serif'],
   'font.monospace': ['Andale Mono',
                       'Nimbus Mono L',
@@ -141,8 +151,6 @@ a8c_style_white = {'axes.axisbelow': True,
  'ytick.major.size': 0,
  'ytick.minor.size': 0}
 
-
-a8c_style = a8c_style_white
 
 def fewer_axis_ticks(*args, **kwargs):
     msg = "`fewer_axis_ticks` is an alias to `cleanup` and is deprecated"
@@ -196,13 +204,12 @@ ylabelparams = {'x': 0,
                 'ma': 'left'
                 }
 axtitleparams = {'x': 0,
-                 'y': 1,
+                 'y': 1.1,
                  'ha': 'left',
                  'ma': 'left',
                  'va': 'bottom'}
 
 
-sns.set_style(a8c_style_white)
 
 def sinplot(n_series=3, flip=1):
     '''Helper function to demonstrate some graphics'''
@@ -220,6 +227,8 @@ def sinplot(n_series=3, flip=1):
     cleanup()
     return plt.gcf()
 
+a8c_style = a8c_style_gray
+sns.set_style(a8c_style)
 
 if __name__ == '__main__':
     plt.interactive(False)
